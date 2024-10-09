@@ -5,18 +5,23 @@
 
 {% block body %}
     <div class="container">
-        <h1 class='text-center'>{{ category }}</h1>
+        <h1 class='text-center m-4' style="text-transform:uppercase">{{ category }}</h1>
     </div>
-    {% for objet in category.objets %}
-    <div class="card" style="width: 18rem;">
-        <img src="{{ objet.thumbnail }}" class="card-img-top" alt="img">
-        <div class="card-body container">
-            <h5 class="card-title"style="text-transform:uppercase">{{ objet.name }}</h5>
-            <p class="card-text">{{ objet.description }}</p>
-
-            <a href="#" class="btn btn-primary">Ajouter au panier</a>
+    <div class="row justify-content-center">
+        {% for objet in category.objets %}
+        <div class="card m-2" style="width: 18rem;">
+            <img src="/uploads/{{ objet.thumbnail }}" class="card-img-top" alt="img">
+            <div class="card-body container">
+                <h5 class="card-title"style="text-transform:uppercase">{{ objet.name }}</h5>
+                <p class="card-text">{{ objet.description }}</p>
+                <div class="d-flex justify-content-between">
+                    <p style="color:green">{{objet.category}}</p>
+                    <p style='color:blue'>{{objet.owner.username}}</p>
+                </div>
+                <a href="/objets/show/{{ objet.id }}" class="btn btn-primary">Voir Plus</a>
+            </div>
         </div>
-    </div>
-    {% endfor %}
+        {% endfor %}
+</div>
 
 {% endblock %}

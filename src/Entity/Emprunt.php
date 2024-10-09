@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\EmpruntRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EmpruntRepository::class)]
 class Emprunt
@@ -23,9 +24,11 @@ class Emprunt
     private ?user $User = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\GreaterThan('today')]
     private ?\DateTimeInterface $DateStart = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\GreaterThan(propertyPath:'DateStart')]
     private ?\DateTimeInterface $DateEnd = null;
 
     public function getId(): ?int
@@ -80,4 +83,5 @@ class Emprunt
 
         return $this;
     }
+
 }
