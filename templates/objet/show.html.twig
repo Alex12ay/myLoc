@@ -4,6 +4,7 @@
 
 {% block body %}
     <div class="container">
+<<<<<<< HEAD
         <div class= "justify-content-center">
             <img src="/uploads/{{ objet.thumbnail }}" class="img-fluid mx-auto d-block" alt="..." >
         </div>
@@ -63,6 +64,26 @@
                     {% endif %}
                 {% endif %}
             {% endif %}
+=======
+        <img src="uploads/{{ objet.thumbnail }}" class="card-img-top" alt="...">
+        <h5 class="text-center m-1"style="text-transform:uppercase">{{ objet.name }}</h5>
+        <div class="container">
+            <p>{{objet.description}}</p>
+            <div class="d-flex justify-content-between">
+                <p style="color:green">{{objet.category}}</p>
+                <p style='color:blue'>{{objet.owner.username}}</p>
+            </div>
+            <div>
+            <h6>Prochaine réservation</h6>
+            
+            </div>
+            <!--prochaine date dispo-->
+        {% if app.user %}
+          <a href="/emprunt/{{ objet.id }}" class="btn btn-primary">Réserver</a>
+        {% else %}
+            <p>Connectez-vous pour réserver</p>
+        {% endif %}
+>>>>>>> origin/main
         </div>
     </div>
     

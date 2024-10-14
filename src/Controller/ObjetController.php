@@ -81,13 +81,19 @@ class ObjetController extends AbstractController
     public function show(ObjetRepository $or, $id, CategoryRepository $cr): Response
 
     {
+<<<<<<< HEAD
         $date = date('d/m/Y');
+=======
+>>>>>>> origin/main
         $categories = $cr ->findAll();
         $objet = $or->find($id);
         return $this->render('objet/show.html.twig', [
             'objet' => $objet,
             'categories' => $categories,
+<<<<<<< HEAD
             'date' => $date
+=======
+>>>>>>> origin/main
         ]);
     }
 

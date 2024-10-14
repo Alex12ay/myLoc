@@ -9,6 +9,7 @@
     <div class="row justify-content-center">
         {% for objet in category.objets %}
         <div class="card m-2" style="width: 18rem;">
+<<<<<<< HEAD
             <img src="../uploads/{{ objet.thumbnail }}" class="card-img-top" alt="img">
             <div class="card-body container">
                 <h5 class="card-title text-center"style="text-transform:uppercase">{{ objet.name }}</h5>
@@ -53,4 +54,20 @@
             </div>
         {% endfor %}
     </div>
+=======
+            <img src="/uploads/{{ objet.thumbnail }}" class="card-img-top" alt="img">
+            <div class="card-body container">
+                <h5 class="card-title"style="text-transform:uppercase">{{ objet.name }}</h5>
+                <p class="card-text">{{ objet.description }}</p>
+                <div class="d-flex justify-content-between">
+                    <p style="color:green">{{objet.category}}</p>
+                    <p style='color:blue'>{{objet.owner.username}}</p>
+                </div>
+                <a href="/objets/show/{{ objet.id }}" class="btn btn-primary">Voir Plus</a>
+            </div>
+        </div>
+        {% endfor %}
+</div>
+
+>>>>>>> origin/main
 {% endblock %}

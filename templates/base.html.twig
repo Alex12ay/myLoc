@@ -45,11 +45,16 @@
                 </div>
 
                 <div class="connexion d-flex justify-content-center">
+<<<<<<< HEAD
                     {% if app.user and is_granted('ROLE_ADMIN') %}
                         <a href="/admin" class="nav-link me-3" aria-current="page" style="color:white">Accès Admin</a>                           
                     {% endif %}
                     {% if app.user %}
                         <a href="/profile"><p class="m-0 pe-3" style="color:white">{{app.user.username}}</p></a>
+=======
+                    {% if app.user %}
+                        <p class="m-0 pe-3" style="color:white">{{app.user.username}}</p>
+>>>>>>> origin/main
                         <a href="/logout"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-x-lg me-2" viewBox="0 0 16 16">
                         <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
                         </svg></a>

@@ -19,7 +19,10 @@ class ProfileController extends AbstractController
         $objets = $owner->getObjets();
         $categories =$cr->findAll();
         $date = date('d/m/Y');
+<<<<<<< HEAD
         $pointClient = $owner -> getNbPoint();
+=======
+>>>>>>> origin/main
           
         
         
@@ -27,7 +30,10 @@ class ProfileController extends AbstractController
             'categories' => $categories ,
             'objets' => $objets,
             'date' => $date,
+<<<<<<< HEAD
             'pointClient' => $pointClient,
+=======
+>>>>>>> origin/main
         ]);
     }
 }

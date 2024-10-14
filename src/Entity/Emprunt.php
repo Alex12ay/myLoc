@@ -87,6 +87,7 @@ class Emprunt
         return $this;
     }
 
+<<<<<<< HEAD
     public function getPoint(): ?float
     {
         return $this->point;
@@ -99,4 +100,6 @@ class Emprunt
         return $this;
     }
 
+=======
+>>>>>>> origin/main
 }
