@@ -15,20 +15,23 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class CategoryController extends AbstractController
 {
-    #[Route('/category', name: 'app_category')]
-    public function index(): Response
+   
+    public function index(CategoryRepository $cr): Response
     {
-        return $this->render('category/index.html.twig', [
-            'controller_name' => 'CategoryController',
+        $categories = $cr->findAll();
+        return $this->render('base.html.twig', [
+            'categories' => $categories,
         ]);
     }
-    #[Route('/category/add', name: 'app_category_add')]
-    public function add(Request $request, EntityManagerInterface $em,): Response
+    #[Route('admin/category/add', name: 'app_category_add')]
+    public function add(Request $request, EntityManagerInterface $em, CategoryRepository $cr): Response
     {
 
         $newCategory = new Category;
         $form = $this->createForm(CategoryType::class, $newCategory);
         $form -> handleRequest($request);
+        $categories = $cr -> findAll();
+
 
         if($form -> isSubmitted() && $form->isValid())
         {
@@ -39,15 +42,20 @@ class CategoryController extends AbstractController
 
         return $this->render('category/add.html.twig', [
             'formCategory' => $form,
+            'categories' => $categories,
         ]);
     }
     #[Route('/category/{id}', name: 'app_category_show')]
     public function show(CategoryRepository $cr, $id):Response
     {
+        $date = date('d/m/Y');
         $category = $cr->find($id);
+        $categories = $cr ->findAll();
 
         return $this->render('category/show.html.twig',[
             'category' => $category,
+            'categories' => $categories,
+            'date' => $date
         ]);
     }
     

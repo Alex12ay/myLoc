@@ -1,32 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Articles par categorie{% endblock %}
+{% block title %}Profil -myLoc{% endblock %}
 
 {% block body %}
+    <h1 class="text-center m-4"style="text-transform:uppercase">{{app.user.username}}</h1>
+    <h3 class="text-center">Vous avez {{ pointClient }} point(s) disponible</h3>
     <div class="container">
-        <h1 class='text-center m-4' style="text-transform:uppercase">{{ category }}</h1>
-    </div>
-    <div class="row justify-content-center">
-        {% for objet in category.objets %}
-        <div class="card m-2" style="width: 18rem;">
-            <img src="../uploads/{{ objet.thumbnail }}" class="card-img-top" alt="img">
-            <div class="card-body container">
-                <h5 class="card-title text-center"style="text-transform:uppercase">{{ objet.name }}</h5>
-                <p class="card-text">{{ objet.description }}</p>
-                <div class="d-flex justify-content-between">
+         <div class="row justify-content-center">
+        {% for objet in objets %}
+            <div class="card m-2" style="width: 18rem;">
+                <img src="uploads/{{ objet.thumbnail }}" class="card-img-top" alt="...">
+                <div class="card-body container">
+                    <h5 class="card-title text-center" style="text-transform:uppercase">{{ objet.name }}</h5>
+                    <p class="card-text">{{objet.description}}</p>
+                    <div class="d-flex justify-content-between">
                     {% if app.user == none or app.user.id != objet.owner.id  %}
                         <p class="card-text" style="color:blue; text-decoration: none">{{objet.owner.username}}</p>
                     {% else %}
                         <a href="/profile"><p class="card-text">{{objet.owner.username}}</p></a>
                     {% endif %}
-                     <a href="/category/{{objet.category.id}}"><p style="color:green">{{objet.category}}</p></a>
-                </div>
-                <a href="/objets/show/{{ objet.id }}" class="btn btn-primary w-100">Voir Plus</a>
-            </div>
-            <div class="container">
-            {% for emprunt in objet.emprunts %}
+                    <a href="/category/{{objet.category.id}}"><p style="color:green">{{objet.category}}</p></a>
+                    </div>
+                    <a href="/objets/show/{{ objet.id }}" class="btn btn-primary w-100 mb-2">Voir Plus</a>
+                    {% for emprunt in objet.emprunts %}
                     {% if date >= emprunt.DateStart|date('d/m/Y') and date <= emprunt.DateEnd|date('d/m/Y') %}
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between mt-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-circle-fill mt-2" viewBox="0 0 16 16">
                             <circle cx="8" cy="8" r="8"/>
                             </svg>
@@ -50,7 +48,16 @@
                     {% endif %}
                     {% endif %}
                 {% endfor %}
+                </div>
             </div>
+
         {% endfor %}
+    </div>
+
+        <!--
+        *nb point
+        *bouton formulaire ajjouter en pret
+        *suivi des prets en cours(nomEmprunteur, date debut/date fin)
+        -->
     </div>
 {% endblock %}

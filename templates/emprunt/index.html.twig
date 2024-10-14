@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Emprunter - myLoc{% endblock %}
+{% block message %}{% endblock %}
+{% block body %}
+
+{% for message in app.flashes('error') %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+{% endfor %}
+
+{% for message in (app.flashes('success')) %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+<h1 class="text-center mt-3" style="text-transform:uppercase">Emprunter</h1>
+<h5 class="text-center mt-3"> {{ objet }} </h5>
+<h6 class="text-center mt-3"> Coût: {{ pointCategorie }} point(s)</h6>
+   <div class="container w-50">
+    {{ form(formEmprunt) }}
+   </div> 
+   <div>
+        <p class="text-center">Vous avez {{ pointClient }} point(s) disponible</p>
+        <p class="text-center">Il vous restera {{ pointClient - pointCategorie }} point(s) disponible</p>
+   </div>
+{% endblock %}

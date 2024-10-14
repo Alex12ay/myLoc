@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Emprunt;
+use App\Entity\Objet;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -16,6 +17,26 @@ class EmpruntRepository extends ServiceEntityRepository
         parent::__construct($registry, Emprunt::class);
     }
 
+     /**
+     * Vérifie si un objet est déjà emprunté pour une période donnée
+     *
+     * @param Objet $objet
+     * @param \DateTime $dateStart
+     * @param \DateTime $dateEnd
+     * @return Emprunt[]
+     */
+    public function findEmprunts(Objet $objet, \DateTime $DateStart, \DateTime $DateEnd)
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.objet = :objet')
+            ->andWhere('e.DateStart < :DateEnd')
+            ->andWhere('e.DateEnd > :DateStart')
+            ->setParameter('objet', $objet)
+            ->setParameter('DateStart', $DateStart)
+            ->setParameter('DateEnd', $DateEnd)
+            ->getQuery()
+            ->getResult();
+    }
     //    /**
     //     * @return Emprunt[] Returns an array of Emprunt objects
     //     */

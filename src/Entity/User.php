@@ -20,6 +20,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 50)]
+    private ?string $firstname = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $Lastname = null;
+
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
@@ -47,14 +53,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Emprunt::class, mappedBy: 'User')]
     private Collection $emprunts;
 
-    #[ORM\Column(length: 50)]
-    private ?string $firstname = null;
-
-    #[ORM\Column(length: 50)]
-    private ?string $Lastname = null;
-
     #[ORM\Column]
-    private ?float $NbPoint = null;
+    private ?float $NbPoint = 20;
 
     #[ORM\Column(length: 50)]
     private ?string $Username = null;
@@ -235,6 +235,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    
+    public function subtractPoints(int $NbPoint): self
+    {
+        $this->NbPoint -= $NbPoint;
+
+        return $this;
+    }
 
     public function getUsername(): ?string
     {
@@ -246,5 +253,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->Username = $Username;
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->Username;
     }
 }
