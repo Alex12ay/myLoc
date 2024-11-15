@@ -55,10 +55,7 @@ class CategoryController extends AbstractController
         return $this->render('category/show.html.twig',[
             'category' => $category,
             'categories' => $categories,
-<<<<<<< HEAD
             'date' => $date
-=======
->>>>>>> origin/main
         ]);
     }
     
